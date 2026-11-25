@@ -1,0 +1,315 @@
+.fc-topbar__root *,
+.fc-topbar__root *::before,
+.fc-topbar__root *::after {
+  box-sizing: border-box;
+}
+
+.fc-topbar__root {
+  --fc-primary:   #0d2c4b;
+  --fc-accent:    #1a629b;
+  --fc-red:       #cc0000;
+  --fc-white:     #ffffff;
+  --fc-divider:   rgba(255, 255, 255, 0.10);
+  --fc-font:      'Open Sans','Roboto','Segoe UI',sans-serif;
+
+  /* Fond : gradient linéaire simple, sans texture de points */
+  background: linear-gradient(90deg, #0d2c4b 0%, #12426b 60%, #0d3558 100%);
+
+  font-family: var(--fc-font);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0 20px;
+  min-height: 46px;
+  font-size: 13.5px;
+  width: 100%;
+  
+  position: relative !important;
+  z-index: 999999 !important; /* Un chiffre absurde pour être sûr de passer au-dessus d'Elementor */
+  pointer-events: auto !important;
+}
+
+/* ============================================================
+   2. BOUTONS GAUCHE
+   ============================================================ */
+.fc-topbar__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Bouton Prendre RDV */
+.fc-btn-rdv {
+  background: var(--fc-accent) !important;
+  color: var(--fc-white) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: none !important;
+  transition: background 0.2s, opacity 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  letter-spacing: 0.1px;
+}
+.fc-btn-rdv:hover {
+  background: #155285 !important;
+  opacity: 0.95;
+}
+
+/* Bouton Outils */
+.fc-btn-tools {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  gap: 7px !important;
+  background: #1a7a5e !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 6px 14px !important;
+  color: white !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: background 0.2s !important;
+  white-space: nowrap !important;
+  letter-spacing: 0.1px !important;
+}
+.fc-btn-tools:hover {
+  background: #145f47 !important;
+  color: white !important;
+}
+.fc-btn-tools svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: currentColor !important;
+}
+
+/* ============================================================
+   3. BOUTON HAMBURGER
+   ============================================================ */
+.fc-topbar__burger {
+  display: none;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.85);
+  font-size: 22px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0 5px 15px;
+  transition: color 0.2s;
+  
+  position: relative !important;
+  z-index: 999999 !important; 
+}
+.fc-topbar__burger:hover { color: var(--fc-white); }
+
+/* ============================================================
+   4. MENU DROITE
+   ============================================================ */
+.fc-topbar__right { display: flex; align-items: stretch; }
+.fc-topbar__menu {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: stretch;
+}
+
+.fc-topbar__item {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  /* Remplace la bordure solide par un séparateur plus discret */
+  border-right: 1px solid var(--fc-divider);
+  transition: background 0.15s;
+}
+.fc-topbar__item:first-child { border-left: 1px solid var(--fc-divider); }
+
+/* Indicateur de survol : fond très léger plutôt que texturé */
+.fc-topbar__item:hover { background: rgba(255,255,255,0.06); }
+
+/* Liens */
+.fc-topbar__root .fc-topbar__link,
+.fc-topbar__root .fc-topbar__link span,
+.fc-topbar__root .fc-topbar__link i {
+  color: rgba(255,255,255,0.88) !important;
+  text-decoration: none !important;
+}
+
+.fc-topbar__link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 5px;
+  font-weight: 400;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s;
+  letter-spacing: 0.1px;
+}
+.fc-topbar__link:hover,
+.fc-topbar__item:hover .fc-topbar__link,
+.fc-topbar__item:hover .fc-topbar__link span,
+.fc-topbar__item:hover .fc-topbar__link i {
+  color: var(--fc-white) !important;
+}
+
+.fc-topbar__link i.fa-caret-down {
+  font-size: 10px;
+  opacity: 0.6;
+  margin-left: 2px;
+  transition: transform 0.25s;
+}
+.fc-topbar__item.is-expanded .fc-topbar__link i.fa-caret-down {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ============================================================
+   5. PETITS DROPDOWNS (menu "Mon espace")
+   ============================================================ */
+.fc-topbar__dropdown {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--fc-white);
+  min-width: 200px;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 8px 0 !important;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  border-top: 2px solid var(--fc-accent);
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s, visibility 0.18s;
+}
+.fc-topbar__item.is-expanded .fc-topbar__dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fc-topbar__dropdown li { margin: 0 !important; padding: 0 !important; border: none !important; }
+.fc-topbar__dropdown a {
+  display: block !important;
+  padding: 9px 20px !important;
+  color: #334155 !important;
+  text-decoration: none !important;
+  font-size: 13.5px !important;
+  transition: background 0.15s, color 0.15s, padding-left 0.12s !important;
+}
+.fc-topbar__dropdown a:hover {
+  background: #f8fafc !important;
+  color: var(--fc-accent) !important;
+  padding-left: 24px !important;
+}
+
+/* ============================================================
+   6. GESTION MEMBRES
+   ============================================================ */
+.fc-show-logged-in  { display: none !important; }
+.fc-show-logged-out { display: flex !important; }
+body.logged-in .fc-show-logged-in  { display: flex !important; }
+body.logged-in .fc-show-logged-out { display: none !important; }
+
+/* ============================================================
+   7. RESPONSIVE MOBILE (≤ 1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .fc-topbar__root {
+    padding: 10px 15px;
+    align-items: center;
+    min-height: 52px;
+  }
+
+  .fc-topbar__burger { display: flex;position: relative !important;
+  z-index: 999999 !important;  }
+
+  .fc-topbar__left { gap: 8px; }
+
+  .fc-btn-rdv {
+    padding: 5px 12px;
+    font-size: 12px !important;
+    border-radius: 5px;
+  }
+  .fc-btn-tools {
+    padding: 5px 12px !important;
+    font-size: 12px !important;
+    gap: 5px !important;
+    border-radius: 5px !important;
+  }
+  .fc-btn-tools svg { width: 12px !important; height: 12px !important; }
+
+  .fc-topbar__right {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #0d2c4b;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+    z-index: 9999;
+  }
+  .fc-topbar__root.is-open .fc-topbar__right { display: flex; flex-direction: column; height: auto; }
+  .fc-topbar__menu { flex-direction: column; width: 100%; height: auto; }
+
+  .fc-topbar__item {
+    border: none !important;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fc-topbar__link {
+    padding: 14px 20px !important;
+    width: 100%;
+    justify-content: flex-start;
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    font-size: 14px !important;
+  }
+  .fc-topbar__link span { display: inline-block !important; }
+  .fc-topbar__link i.fa-caret-down { margin-left: auto; display: inline-block !important; font-size: 13px; }
+
+  .fc-topbar__dropdown {
+    position: static !important;
+    transform: none !important;
+    width: calc(100% - 30px) !important;
+    margin: 4px auto 12px auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10) !important;
+    border-radius: 6px !important;
+    border-top: 2px solid var(--fc-accent) !important;
+    padding: 18px !important;
+  }
+
+  .fc-topbar__item.is-expanded .fc-topbar__dropdown { display: block; }
+  .fc-topbar__item.is-expanded .fc-topbar__link i.fa-caret-down { transform: rotate(180deg); }
+}
+
+/* Empêche l'icône de bloquer le clic sur mobile (bug fréquent sur iOS/Safari) */
+.fc-topbar__burger i {
+  pointer-events: none;
+}
+
+
+@media (max-width: 480px) {
+  .fc-topbar__left { gap: 6px; }
+  .fc-btn-rdv { padding: 5px 10px; font-size: 11px !important; }
+  .fc-btn-tools { padding: 5px 10px !important; font-size: 11px !important; gap: 4px !important; }
+  .fc-btn-utils span { display: none; }
+  .fc-btn-tools svg { width: 13px !important; height: 13px !important; }
+}
