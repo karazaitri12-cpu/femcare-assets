@@ -1,5 +1,5 @@
 /* FemCare Hub 2.0 — Navbar */
-(function(){
+/* (function(){
   if(!document.querySelector('link[href*="font-awesome"]') &&
      !document.querySelector('link[href*="fontawesome"]')){
     var l=document.createElement('link');
@@ -7,7 +7,7 @@
     l.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
     document.head.appendChild(l);
   }
-})();
+})();  */
 
 (function () {
   'use strict';
