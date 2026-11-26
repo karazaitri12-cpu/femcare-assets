@@ -1,0 +1,22 @@
+/* =================================================
+   FEMCARE HUB 2.0 — BADGE PREMIUM
+   Version 1.0.0
+   ================================================= */
+
+.kz-badge-premium {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'Open Sans', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #92650a;
+    /* background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); */
+    border: 1px solid #f59e0b;
+    border-radius: 20px;
+    padding: 3px 10px;
+    box-shadow: 0 1px 4px rgba(245,158,11,0.25);
+    white-space: nowrap;
+}
